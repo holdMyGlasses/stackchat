@@ -10,16 +10,11 @@ export default class MessagesList extends Component {
     this.state = { messages: [] };
   }
 
-  async componentDidMount () {
-    const response = await axios.get('/api/messages');
-    const messages = response.data;
-    this.setState({ messages });
-  }
 
   render () {
 
     const channelId = Number(this.props.match.params.channelId); // because it's a string "1", not a number!
-    const messages = this.state.messages;
+    const messages = this.state.messages;//messages that are here
     const filteredMessages = messages.filter(message => message.channelId === channelId);
 
     return (

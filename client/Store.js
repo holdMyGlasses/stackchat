@@ -22,5 +22,18 @@ export const gotMessagesFromServer = (messages => {
     }
 })
 
+
+const fetchMessages = (dispatch) => {
+
+    return async (dispatch) =>{
+        const response = await axios.get('/api/messages');
+        const messages = response.data;
+        const action = gotMessagesFromServer(messages)
+        dispatch(action)
+    }
+}
+
+
+
 const store = createStore(reducer);
 export default store;
