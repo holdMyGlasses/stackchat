@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Message from './Message';
 import NewMessageEntry from './NewMessageEntry';
-import axios from 'axios';
+import { connect } from 'react-redux'
 
 export default class MessagesList extends Component {
 
@@ -9,6 +9,7 @@ export default class MessagesList extends Component {
     super();
     this.state = { messages: [] };
   }
+
 
 
   render () {
@@ -26,4 +27,17 @@ export default class MessagesList extends Component {
       </div>
     );
   }
+}
+
+const mapStateToProps = (state) => {
+  return {
+      messages: state.messages
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchInitialMessages: () => dispatch(fetchMessages())
+  }
+  
 }
